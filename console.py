@@ -139,7 +139,7 @@ class HBNBCommand(cmd.Cmd):
             except(SyntaxError, NameError):
                 pass
             if hasattr(new_class, key):
-                setattr(new_class, key, val`ue)
+                setattr(new_class, key, value)
     except SyntaxError:
         print("** no class name **")
     except NameError:
