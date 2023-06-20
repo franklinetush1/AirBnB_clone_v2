@@ -142,6 +142,8 @@ class HBNBCommand(cmd.Cmd):
                     pass
                 if hasattr(new_class, key):
                     setattr(new_class, key, value)
+            new_class.save()
+            print(new_class.id)
         except SyntaxError:
             print("** no class name **")
         except NameError:
