@@ -11,10 +11,10 @@ class FileStorage:
     def all(self, cls=None):
         """Return a dictionary of objects in __objects."""
         if cls is None:
-            return self.__objects
+            return
         newdict = {}
         if type(cls) == str:
-            cls = eval(cls)        
+            cls = eval(cls)
         for key, val in self.__objects.items():
             if type(val) == cls:
                 newdict[key] = val
@@ -63,7 +63,7 @@ class FileStorage:
             return
         try:
             if obj:
-            key = "{}.{}".format(type(obj).__name__, obj.id)
-            del self.__objects[key]
+                key = "{}.{}".format(type(obj).__name__, obj.id)
+                del self.__objects[key]
         except(AttributeError, KeyError):
             pass
