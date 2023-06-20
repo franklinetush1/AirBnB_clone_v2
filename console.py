@@ -136,9 +136,9 @@ class HBNBCommand(cmd.Cmd):
                 print(err)
             kwargs[key] = value
             if kwargs == {}:
-                new_class= eval("{}()".format(arglist[0]))
+                new_class= eval(my_list[0])
             else:
-                new_class= eval("{}()".format(arglist[0]))(**kwargs)
+                new_class= eval(my_list[0])(**kwargs)
                 storage.new(new_class)
             print(new_class.id)
             new_class.save()
