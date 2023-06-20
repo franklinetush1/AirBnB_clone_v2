@@ -136,7 +136,7 @@ class HBNBCommand(cmd.Cmd):
                 print(err)
             try:
                 value = eval(value)
-            except(SyntaxError, NameError):
+            except:
                 pass
             if hasattr(new_class, key):
                 setattr(new_class, key, value)
