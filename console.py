@@ -114,13 +114,13 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, saves it"""
+    """Creates a new instance of BaseModel, saves it"""  
     try:
         if not arg:
             raise SyntaxError()
-        arglist = arg.split(" ")    
+        arglist = arg.split(" ")
+        new_class = eval(arglist[0])()    
         for index in range(1,len(arglist)):
-            kwargs = {}
             val_pair = arglist[index]
             key,value = val_pair.split("=")
             value= value.strip('"').replace("_"," ")        
@@ -134,16 +134,15 @@ class HBNBCommand(cmd.Cmd):
                     value = float(value)
             except Exception as err:
                 print(err)
-            kwargs[key] = value
-            if kwargs == {}:
-                new_class= eval(my_list[0])
-            else:
-                new_class= eval(my_list[0])(**kwargs)
-                storage.new(new_class)
-            print(new_class.id)
-            new_class.save()
+            try:
+                value = eval(value)
+            except:
+                pass                     
+            if hasattr(new_class, key):
+                 setattr(new_class, key, value)
+            
     except SyntaxError:
-            print("** no class name **")
+                print("** no class name **")
     except NameError:
             print("** class does not exist **")
 
