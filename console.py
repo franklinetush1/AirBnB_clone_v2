@@ -123,10 +123,12 @@ class HBNBCommand(cmd.Cmd):
             for index in range(1, len(arglist)):
                 val_pair = arglist[index]
                 key, value = val_pair.split("=")
-                value = value.strip('"').replace("_", " ")
+                value = value.strip('"').replace("_", r" ")
                 try:
                     if '"' in value:
                         value = value.replace('"', r'\"')
+                    if "'" in value:
+                        value = value.replace("'", r"\'")
                 except Exception as err:
                     print(err)
                 try:
