@@ -114,34 +114,32 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, saves it"""
+    """Creates a new instance of BaseModel, saves it"""
     try:
         if not arg:
             raise SyntaxError()
         arglist = arg.split(" ")
         new_class = eval(arglist[0])()
         for index in range(1, len(arglist)):
-            if "=" in arglist[index]:
-                val_pair = arglist[index]
-                key, value = val_pair.split("=")
-                value = value.strip('"').replace("_", r" ")
-                try:
-                    if '"' in value:
-                        value = value.replace('"', r'\"')
-                    if "'" in value:
-                        value = value.replace("'", r"\'")
-                except Exception as err:
-                    print(err)
-                try:
-                    if'.' in value:
-                        value = float(value)
-                except Exception as err:
-                    print(err)
-                if hasattr(new_class, key):
-                    setattr(new_class, key, value)
-            else:
-                pass
-        new_class.save()
+            val_pair = arglist[index]
+            key, value = val_pair.split("=")
+            value = value.strip('"').replace("_", r" ")
+            try:
+                if '"' in value:
+                    value = value.replace('"', r'\"')
+                if "'" in value:
+                    value = value.replace("'", r"\'")
+            except Exception as err:
+                print(err)
+            try:
+                if'.' in value:
+                    value = float(value)
+            except Exception as err:
+                print(err)
+            print(key)
+            print(value)
+            new_class = eval(arglist[0])(key, value)
+            new_class.save()
         print(new_class.id)
     except SyntaxError:
         print("** no class name **")
