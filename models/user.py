@@ -6,7 +6,7 @@ from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 
 
-class User(BaseModel):
+class User(BaseModel, Base):
     """This class defines a user"""
     __tablename__ = "users"
     email = Column(String(128), nullable=False)
