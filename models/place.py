@@ -8,7 +8,6 @@ from models.city import City
 from models.user import User
 
 
-
 class Place(BaseModel,Base):
     """ A place to stay """
     __tablename__ = "places"

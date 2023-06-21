@@ -114,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-    """Creates a new instance of BaseModel, saves it"""
+        """Creates a new instance of BaseModel, saves it"""
     try:
         if not arg:
             raise SyntaxError()
@@ -137,15 +137,12 @@ class HBNBCommand(cmd.Cmd):
                         value = float(value)
                 except Exception as err:
                     print(err)
-                
                 if hasattr(new_class, key):
                     setattr(new_class, key, value)
-                
             else:
                 pass
         new_class.save()
         print(new_class.id)
-		
     except SyntaxError:
         print("** no class name **")
     except NameError:
