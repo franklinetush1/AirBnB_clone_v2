@@ -8,7 +8,7 @@ def do_pack():
     archive_name = "web_static_{}.tgz".format(time_st)
     local("mkdir -p versions")
   	output = local("tar -czvf versions/{} web_static".format(archive_name))
-	file_path = "versions/{}."format(archive_name)
+	archive_path = "versions/{}."format(archive_name)
     if output.failed:
         return None
-    return file_path
+    return archive_path
