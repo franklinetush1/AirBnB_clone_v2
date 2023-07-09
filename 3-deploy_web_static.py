@@ -8,7 +8,7 @@ import os
 def deploy():
     """Creates and distributes an archive to the web servers"""
     arch_path = do_pack()
-    if not arch_path:
+    if arch_path is None:
         return False    
     return do_deploy(arch_path)
 
