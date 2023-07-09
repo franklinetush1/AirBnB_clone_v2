@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Script that Distributes an archive to the web servers"""
 from datetime import datetime
-from fabric.api import run, env, put
+from fabric.api import *
 import os
 
 
@@ -18,12 +18,15 @@ def do_deploy(archive_path):
         archive_folder = filename.split(".")[0]
         put(archive_path, '/tmp/')
         run('mkdir -p /data/web_static/releases/{}/'.format(archive_folder))
-        run('tar -xzf /tmp/{} -C /data/web_static/releases/{}/'.format(filename, archive_folder))
+        run('tar -xzf /tmp/{} -C /data/web_static/releases/{}/'
+            .format(filename, archive_folder))
         run('rm /tmp/{}'.format(filename))
-        run('mv /data/web_static/releases/{}/web_static/* /data/web_static/releases/{}/'.format(archive_folder, archive_folder))
+        run('mv /data/web_static/releases/{}/web_static/* /data/web_static/releases/{}/'
+            .format(archive_folder, archive_folder))
         run('rm -rf /data/web_static/releases/{}/web_static'.format(archive_folder))
         run('rm -rf /data/web_static/current')
-        run('ln -s /data/web_static/releases/{}/ /data/web_static/current'.format(archive_folder))
+        run('ln -s /data/web_static/releases/{}/ /data/web_static/current'
+            .format(archive_folder))
         print("New version deployed!")
         return True
     except:
