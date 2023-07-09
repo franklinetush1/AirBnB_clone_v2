@@ -5,6 +5,14 @@ from fabric.api import *
 import os
 
 
+def deploy():
+    """Creates and distributes an archive to the web servers"""
+    arch_path = do_pack()
+    if not arch_path:
+        return False    
+    return do_deploy(arch_path)
+
+
 def do_pack():
     """Returns the path of the generated archive if successful,else None"""
     time_st = datetime.now().strftime("%Y%m%d%H%M%S")
@@ -40,11 +48,3 @@ def do_deploy(archive_path):
         return True
     except:
         return False
-
-
-def deploy():
-    """Creates and distributes an archive to the web servers"""
-    arch_path = do_pack()
-    if not arch_path:
-        return False    
-    return do_deploy(arch_path)
