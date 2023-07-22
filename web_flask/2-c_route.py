@@ -10,12 +10,12 @@ def hello():
     return “Hello HBNB!”
 
 @app.route("/hbnb", strict_slashes=False)
-def hbnb():
+def hello_hbnb():
     """Displays'HBNB'"""
     return "HBNB"
 
 @app.route("/c/<text>", strict_slashes=False)
-def dispc(text):
+def displayc(text):
     """Displays 'C' followed by <text>."""
     text = text.replace("_", " ")
     return "C {}".format(text)
