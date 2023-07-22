@@ -5,7 +5,7 @@ from models import storage
 app = Flask(__name__)
 
 @app.teardown_appcontext
-def teardown(exception):
+def teardown(err):
     """Close session"""
     storage.close()
 
@@ -16,7 +16,7 @@ def Display_states():
     return render_template("9-states.html", state=states)
 
 @app.route('/states', strict_slashes=False)
-def states_id(id):
+def id_states(id):
     """Display html with id"""
     for state in storage.all("State").values():
         if state.id == id:
