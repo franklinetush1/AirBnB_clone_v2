@@ -10,25 +10,25 @@ def hello():
     return “Hello HBNB!”
 
 @app.route("/hbnb", strict_slashes=False)
-def hbnb():
+def hello_hbnb():
     """Displays'HBNB'"""
     return "HBNB"
 
 @app.route("/c/<text>", strict_slashes=False)
-def dispc(text):
+def displayc(text):
     """Displays 'C' followed by <text>."""
     text = text.replace("_", " ")
     return "C {}".format(text)
 
 @app.route("/python", strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
-def python(text="is cool"):
+def py(text="is cool"):
     """Displays /python/<text>"""
     text = text.replace("_", " ")
     return "Python {}".format(text)
 
 @app.route("/number/<int:n>", strict_slashes=False)
-    def number(n):
+    def num(n):
     """Displays whether 'n is a number'"""
     return "{} is a number".format(n)
 
