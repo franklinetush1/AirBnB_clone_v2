@@ -5,7 +5,7 @@ from models import storage
 app = Flask(__name__)
 
 @app.teardown_appcontext
-def session(exception):
+def teardown(exception):
     """Close session"""
     storage.close()
 
