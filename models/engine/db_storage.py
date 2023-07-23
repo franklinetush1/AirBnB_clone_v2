@@ -13,9 +13,9 @@ from models.review import Review
 from models.amenity import Amenity
 
 class DBStorage:
-  """ database storage engine."""
-  __engine = None
-  __session = None
+    """ database storage engine."""
+    __engine = None
+    __session = None
     def __init__(self):
         """Initialize a new DBStorage instance."""
         self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".
